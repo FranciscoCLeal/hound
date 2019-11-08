@@ -12,9 +12,21 @@ RSpec.describe "POST /builds" do
 
   context "with violations" do
     it "makes a new comment and cleans up resolved one" do
-      existing_comment_violation = { line: 5, message: "Line is too long." }
-      new_violation1 = { line: 3, message: "Trailing whitespace detected." }
-      new_violation2 = { line: 9, message: "Avoid empty else-clauses." }
+      existing_comment_violation = {
+        line: 5,
+        message: "Line is too long.",
+        source: "debugger",
+      }
+      new_violation1 = {
+        line: 3,
+        message: "Trailing whitespace detected.",
+        source: "debugger",
+      }
+      new_violation2 = {
+        line: 9,
+        message: "Avoid empty else-clauses.",
+        source: "debugger",
+      }
       violations = [new_violation1, existing_comment_violation, new_violation2]
       create(:repo, :active, github_id: repo_id, name: repo_name)
       stub_review_job(
