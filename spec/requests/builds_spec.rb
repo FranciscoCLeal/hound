@@ -15,17 +15,17 @@ RSpec.describe "POST /builds" do
       existing_comment_violation = {
         line: 5,
         message: "Line is too long.",
-        source: "debugger",
+        source: "foo = 'bbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr';",
       }
       new_violation1 = {
         line: 3,
-        message: "Trailing whitespace detected.",
-        source: "debugger",
+        message: "Avoid empty else-clauses.",
+        source: "else {}",
       }
       new_violation2 = {
         line: 9,
         message: "Avoid empty else-clauses.",
-        source: "debugger",
+        source: "else {}",
       }
       violations = [new_violation1, existing_comment_violation, new_violation2]
       create(:repo, :active, github_id: repo_id, name: repo_name)
